@@ -26,17 +26,13 @@ class _NotesListState extends State<NotesList> {
     super.initState();
     widget.fileManager.read().then((String value) {
       setState(() {
-        print("=========================DEBUGGING========================");
         this.notesList.clear();
         final parseResult = json.decode(value);
         if (parseResult != -1 && parseResult != null) {
           parseResult.forEach((element) {
             this.notesList.add(new Note.fromMap(element));
           });
-          print(
-              "=========================READ SOMETHING========================");
         }
-        print("=========================NO ERRORS========================");
       });
     });
   }
