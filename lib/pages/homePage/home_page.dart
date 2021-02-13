@@ -14,10 +14,10 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    NotesList notesList = new NotesList();
 
     return new Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
+      // * PreferredSize widget is needed when creating custom AppBar.
       appBar: new PreferredSize(
         child: new HomePageAppBar(),
         preferredSize: Size.fromHeight(57.0),
@@ -35,8 +35,11 @@ class HomePage extends StatelessWidget {
               ),
             ).then((PopResult popResult) {
               if (popResult.save && (popResult.text != null || popResult.title != null)) {
+                // * If the save button is pressed, create a new Note only if: it has a title or a body or both.  
                 Function addFunction = store.get('addFunction');
+                // * Get the addFunction method reference from the global state.
                 addFunction(popResult.title, popResult.text, Utility.colors[new Random().nextInt(Utility.colors.length)]);
+                // * Choosing a random index number from the colors list.
               }
             });
           },
@@ -47,7 +50,7 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
-      body: notesList,
+      body: new NotesList(),
     );
   }
 }

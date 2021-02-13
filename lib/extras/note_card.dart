@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 
 class NoteCard extends StatelessWidget {
   final Note note;
+
+  // * References to methods that change state in a Upper Widgets.
   final Function removeFromList;
   final Function editElementFromList;
 
@@ -24,6 +26,7 @@ class NoteCard extends StatelessWidget {
         Navigator.push<PopResult>(
           context,
           new MaterialPageRoute(
+            // the => symbol is equivalent to return statement.
             builder: (BuildContext context) => new EditPage(
               title: this.note.title,
               text: this.note.noteText,
@@ -32,8 +35,10 @@ class NoteCard extends StatelessWidget {
           ),
         ).then((PopResult popResult) {
           if (popResult.delete) {
+            // If delete button is pressed.
             removeFromList(this.note);
           } else if (popResult.save) {
+            // If save button is pressed.
             editElementFromList(this.note, popResult.title, popResult.text);
           }
         });
@@ -50,8 +55,12 @@ class NoteCard extends StatelessWidget {
             children: [
               Expanded(
                 child: new Text(
+                  // ! Consider changing this technique.
                   Utility.modifyStringLength(this.note.title ?? ""),
-                  // TODO: Implement Arabic Support
+                  // * value ?? is equivalent to:
+                  // * if value is null set it to this (after the ??)
+                  // * else keep it as it is.
+                  // TODO: Implement Arabic Support because it is not working efficiently.
                   textDirection: Utility.isArabic(this.note.title)
                       ? TextDirection.rtl
                       : TextDirection.ltr,

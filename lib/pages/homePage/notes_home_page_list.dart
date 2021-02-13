@@ -19,17 +19,24 @@ class NotesList extends StatefulWidget {
 }
 
 class _NotesListState extends State<NotesList> {
+  // * The State Data:
   List<Note> notesList = [];
 
+  // * Runs when the state is first created (Usually when the app is launched).
   @override
   void initState() {
     super.initState();
+
+    // * Reads data from the Json file and put it in the notesList.
     widget.fileManager.read().then((String value) {
       setState(() {
         this.notesList.clear();
+        // Decodes the String into Json objects as a List of Maps.
         final parseResult = json.decode(value);
+        // If an error, it returns -1.
         if (parseResult != -1 && parseResult != null) {
           parseResult.forEach((element) {
+            // Creates a note of each Json object.
             this.notesList.add(new Note.fromMap(element));
           });
         }
@@ -48,31 +55,34 @@ class _NotesListState extends State<NotesList> {
           );
     });
     widget.fileManager.writeListToJsonFile(this.notesList);
-    // * Change after learning Future
+    // * Writes data to Json file after been changed.
   }
 
   void editElementFromList(Note note, String title, String text) {
     setState(() {
+      // * If the textfield changed data, it won't be null in the global state.
       if (title != null)
         this.notesList[this.notesList.indexOf(note)].title = title;
       if (text != null)
         this.notesList[this.notesList.indexOf(note)].noteText = text;
     });
-    // * If the textfield changed data, it won't be null in the global state.
     widget.fileManager.writeListToJsonFile(this.notesList);
-    // * Change after learning Future
+    // * Writes data to Json file after been changed.
   }
+  // ! Stopped here at 10:50, classes left to review:
+  // ! Edit Page, Edit AppBar, files, global state.
 
   void removeFromList(Note note) {
     setState(() {
       this.notesList.remove(note);
     });
     widget.fileManager.writeListToJsonFile(this.notesList);
-    // * Change after learning Future
+    // * Writes data to Json file after been changed.
   }
 
   @override
   Widget build(BuildContext context) {
+    // ! Storing the addFunction in the global state so it can be used later when creating a new Note.
     widget.store.set('addFunction', addToList);
     if (this.notesList.isEmpty) {
       return new Center(

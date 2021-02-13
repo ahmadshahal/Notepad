@@ -13,7 +13,9 @@ class HomePageAppBar extends StatelessWidget {
             size: 25.0,
             color: Theme.of(context).accentColor,
           ),
-          onPressed: () {},
+          onPressed: () {
+            // TODO: Implement.
+          },
         ),
         new IconButton(
           splashRadius: 20.0,
@@ -22,7 +24,9 @@ class HomePageAppBar extends StatelessWidget {
             size: 25.0,
             color: Theme.of(context).accentColor,
           ),
-          onPressed: () {},
+          onPressed: () {
+            // TODO: Implement.
+          },
         ),
       ],
       title: new Container(
