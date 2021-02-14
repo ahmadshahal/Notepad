@@ -13,3 +13,5 @@ class GlobalNoteDataState {
     return _data[key];
   }
 }
+// !: Note that values of the global state must be emptied each time we get out of the
+// !  edit page, so other Notes can use it.

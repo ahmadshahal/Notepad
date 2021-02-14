@@ -60,7 +60,7 @@ class _NotesListState extends State<NotesList> {
 
   void editElementFromList(Note note, String title, String text) {
     setState(() {
-      // * If the textfield changed data, it won't be null in the global state.
+      // * If the textfield changed data, it won't be null.
       if (title != null)
         this.notesList[this.notesList.indexOf(note)].title = title;
       if (text != null)
@@ -69,8 +69,6 @@ class _NotesListState extends State<NotesList> {
     widget.fileManager.writeListToJsonFile(this.notesList);
     // * Writes data to Json file after been changed.
   }
-  // ! Stopped here at 10:50, classes left to review:
-  // ! Edit Page, Edit AppBar, files, global state.
 
   void removeFromList(Note note) {
     setState(() {
@@ -96,6 +94,7 @@ class _NotesListState extends State<NotesList> {
                 height: 200.0,
                 width: 200.0,
                 child: new Image.asset("assets/b_5cbbf7de65149.png"),
+                // TODO: Change the image.
               ),
               new SizedBox(
                 height: 10.0,

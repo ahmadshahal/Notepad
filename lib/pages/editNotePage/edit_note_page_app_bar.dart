@@ -18,6 +18,8 @@ class EditPageAppBar extends StatelessWidget {
           color: Theme.of(context).accentColor,
         ),
         onPressed: () {
+          // * Empties the values saved in the global state before popping
+          // * because they are no longer needed.
           store.set('title', null);
           store.set('text', null);
           Navigator.pop(context, new PopResult(save: false, delete: false));
@@ -33,6 +35,8 @@ class EditPageAppBar extends StatelessWidget {
             color: Theme.of(context).accentColor,
           ),
           onPressed: () {
+            // * Empties the values saved in the global state before popping
+            // * because they are no longer needed.
             store.set('title', null);
             store.set('text', null);
             Navigator.pop(context, new PopResult(save: false, delete: true));
@@ -59,6 +63,7 @@ class EditPageAppBar extends StatelessWidget {
             color: Theme.of(context).accentColor,
           ),
           onPressed: () {
+            // * Saving the values of the global state in variables then emptying them.
             String title = store.get('title');
             String text = store.get('text');
             store.set('title', null);
@@ -71,7 +76,6 @@ class EditPageAppBar extends StatelessWidget {
                   text: text,
                   title: title,
                 )
-                // TODO: After Popping change state values to Null
                 // TODO: Implement Color popping
                 );
           },

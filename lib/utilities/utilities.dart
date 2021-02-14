@@ -20,6 +20,8 @@ class Utility {
     "0xFFB3E5FC",
   ];
 
+  // * Returns True if the String contains an arabic charachter.
+  // TODO: Make it return true only if the first char is arabic.
   static bool isArabic(String str) {
     if (str == null) return false;
     for (int i = 0; i < str.length; i++) {
@@ -29,6 +31,7 @@ class Utility {
     return false;
   }
 
+  // * If the String is long, cut a part of it and exchange it with "..".
   static String modifyStringLength(String str) {
     if (str != null && str.length >= 76) {
       int i;
@@ -42,8 +45,8 @@ class Utility {
     return str;
   }
 
+  // * Parses the DateTime to a String Date format "Month / DD / YYYY".
   static String dateTransformer(DateTime date) {
-    DateTime dateParse = DateTime.parse(date.toString());
-    return "${monthsList[dateParse.month - 1]} ${dateParse.day}, ${dateParse.year}";
+    return "${monthsList[date.month - 1]} ${date.day}, ${date.year}";
   }
 }

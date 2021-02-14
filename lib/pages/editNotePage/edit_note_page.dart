@@ -44,6 +44,8 @@ class EditPage extends StatelessWidget {
               ),
               new TextField(
                 onChanged: (String text) {
+                  // * title will be saved in the global state each time it is
+                  // * so it can be used in to change the data.
                   store.set('title', text);
                 },
                 showCursor: true,
@@ -87,6 +89,8 @@ class EditPage extends StatelessWidget {
               // child:
               new TextField(
                 onChanged: (String text) {
+                  // * text will be saved in the global state each time it is
+                  // * so it can be used in to change the data.
                   store.set('text', text);
                 },
                 showCursor: true,
@@ -113,7 +117,6 @@ class EditPage extends StatelessWidget {
                       fontSize: 16.0),
                 ),
               ),
-              // ),
             ],
           ),
         ),
