@@ -20,14 +20,10 @@ class Utility {
     "0xFFB3E5FC",
   ];
 
-  // * Returns True if the String contains an arabic charachter.
-  // TODO: Make it return true only if the first char is arabic.
+  // * Returns True if the String's first letter is an arabic charachter.
   static bool isArabic(String str) {
     if (str == null) return false;
-    for (int i = 0; i < str.length; i++) {
-      if (str[i].codeUnits[0] <= 1610 && str[i].codeUnits[0] >= 1571)
-        return true;
-    }
+    if (str[0].codeUnits[0] <= 1610 && str[0].codeUnits[0] >= 1571) return true;
     return false;
   }
 
