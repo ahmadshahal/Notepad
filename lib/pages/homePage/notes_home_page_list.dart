@@ -4,6 +4,7 @@ import 'package:Notepad/extras/note.dart';
 import 'package:Notepad/extras/note_card.dart';
 import 'package:Notepad/stateManagment/global_state.dart';
 import 'package:Notepad/utilities/dealing_with_files.dart';
+import 'package:Notepad/utilities/utilities.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
@@ -65,6 +66,9 @@ class _NotesListState extends State<NotesList> {
         this.notesList[this.notesList.indexOf(note)].title = title;
       if (text != null)
         this.notesList[this.notesList.indexOf(note)].noteText = text;
+      if(text != null || title != null)
+        this.notesList[this.notesList.indexOf(note)].date = Utility.dateTransformer(DateTime.now());
+      // * If either the title or the text changed, update the date to today's date.
     });
     widget.fileManager.writeListToJsonFile(this.notesList);
     // * Writes data to Json file after been changed.

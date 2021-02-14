@@ -2,7 +2,7 @@ import 'package:Notepad/utilities/utilities.dart';
 
 class Note {
   String title;
-  // TODO: implement the last modified date
+  // * initializes the Note date with today's date.
   String date = Utility.dateTransformer(DateTime.now());
   String noteText;
   String color;

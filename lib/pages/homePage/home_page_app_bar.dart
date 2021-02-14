@@ -41,7 +41,7 @@ class HomePageAppBar extends StatelessWidget {
           ),
         ),
       ),
-      elevation: 20.0,
+      elevation: 4.0,
     );
   }
 }

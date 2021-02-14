@@ -82,7 +82,7 @@ class EditPageAppBar extends StatelessWidget {
         ),
         new SizedBox(width: 7.0),
       ],
-      elevation: 20.0,
+      elevation: 4.0,
     );
   }
 }

@@ -44,9 +44,10 @@ class EditPage extends StatelessWidget {
               ),
               new TextField(
                 onChanged: (String text) {
-                  // * title will be saved in the global state each time it is
-                  // * so it can be used in to change the data.
+                  // * title will be saved in the global state each time it is changed
+                  // * so it can be used to change the data.
                   store.set('title', text);
+                  // * If no changes happen, String text will be null.
                 },
                 showCursor: true,
                 controller: TextEditingController(text: this.title),
@@ -75,6 +76,7 @@ class EditPage extends StatelessWidget {
                 height: 9.0,
               ),
               new Text(
+                // * If the date is null (we are creating a new Note), put today's date.
                 this.date ?? Utility.dateTransformer(DateTime.now()),
                 textAlign: TextAlign.start,
                 style: new TextStyle(
@@ -85,12 +87,10 @@ class EditPage extends StatelessWidget {
               new SizedBox(
                 height: 1.5,
               ),
-              // Expanded(
-              // child:
               new TextField(
                 onChanged: (String text) {
-                  // * text will be saved in the global state each time it is
-                  // * so it can be used in to change the data.
+                  // * text will be saved in the global state each time it is changed
+                  // * so it can be used to change the data.
                   store.set('text', text);
                 },
                 showCursor: true,
