@@ -16,22 +16,28 @@ class EditPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // * Created an instance and an object of the app bar so we can call the dialog method through it.
+    EditPageAppBar editPageAppBar = new EditPageAppBar();
     return new WillPopScope(
       // * Overrides the android back button functionality
+      // * If this wasn't used, a PopResult instance will not be created and we will get
+      // * a Null Pointer Exception in Note Card class.
+      // * If the Futute.value is false, it will not be popped, but we used the manual pop
+      // * technique using Navigator.pop
       onWillPop: () {
-        store.set('title', null);
-        store.set('text', null);
-        // * If this wasn't used, a PopResult instance will not be created and we will get
-        // * a Null Pointer Exception in Note Card class.
-        Navigator.pop(context, new PopResult(save: false, delete: false));
-        // * If the value is false, it will not be popped, but we used the manual pop
-        // * technique using Navigator.pop
+        // * If and only if the title or the text changed, show the dialog.
+        // * Else, just pop the page.
+        // * If they didn't change, they will be null.
+        if (store.get('title') != null || store.get('text') != null)
+          editPageAppBar.showBackWarningDialog(context);
+        else
+          Navigator.pop(context, new PopResult(save: false, delete: false));
         return Future.value(false);
       },
       child: new Scaffold(
         backgroundColor: Theme.of(context).primaryColor,
         appBar: new PreferredSize(
-          child: new EditPageAppBar(),
+          child: editPageAppBar,
           preferredSize: Size.fromHeight(57.0),
         ),
         body: new Container(

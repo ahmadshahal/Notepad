@@ -6,6 +6,70 @@ class EditPageAppBar extends StatelessWidget {
   // !: Change After Learning State Managment
   final GlobalNoteDataState store = GlobalNoteDataState.instance;
 
+  // * Shows a Delete Alert Dialog.
+  void _showDeleteWarningDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: new Text("Delete this note?"),
+            actions: <Widget>[
+              new FlatButton(
+                child: new Text("Delete"),
+                onPressed: () {
+                  // * Empties the values saved in the global state before popping
+                  // * because they are no longer needed.
+                  store.set('title', null);
+                  store.set('text', null);
+                  Navigator.pop(context); // pops the dialog.
+                  Navigator.pop(
+                      context, new PopResult(save: false, delete: true));
+                  // pops the page.
+                },
+              ),
+              new FlatButton(
+                child: new Text("Cancel"),
+                onPressed: () {
+                  Navigator.pop(context); // pops the dialog.
+                },
+              ),
+            ],
+          );
+        });
+  }
+
+  // * Shows a Go Back Alert Dialog.
+  void showBackWarningDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: new Text("Discard Changes?"),
+            actions: <Widget>[
+              new FlatButton(
+                child: new Text("Discard"),
+                onPressed: () {
+                  // * Empties the values saved in the global state before popping
+                  // * because they are no longer needed.
+                  store.set('title', null);
+                  store.set('text', null);
+                  Navigator.pop(context); // pops the dialog.
+                  Navigator.pop(
+                      context, new PopResult(save: false, delete: false));
+                  // pops the page.
+                },
+              ),
+              new FlatButton(
+                child: new Text("Cancel"),
+                onPressed: () {
+                  Navigator.pop(context); // pops the dialog.
+                },
+              ),
+            ],
+          );
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return new AppBar(
@@ -18,11 +82,13 @@ class EditPageAppBar extends StatelessWidget {
           color: Theme.of(context).accentColor,
         ),
         onPressed: () {
-          // * Empties the values saved in the global state before popping
-          // * because they are no longer needed.
-          store.set('title', null);
-          store.set('text', null);
-          Navigator.pop(context, new PopResult(save: false, delete: false));
+          // * If and only if the title or the text changed, show the dialog.
+          // * Else, just pop the page.
+          // * If they didn't change, they will be null.
+          if (store.get('title') != null || store.get('text') != null)
+            showBackWarningDialog(context);
+          else
+            Navigator.pop(context, new PopResult(save: false, delete: false));
         },
       ),
       actions: [
@@ -35,11 +101,8 @@ class EditPageAppBar extends StatelessWidget {
             color: Theme.of(context).accentColor,
           ),
           onPressed: () {
-            // * Empties the values saved in the global state before popping
-            // * because they are no longer needed.
-            store.set('title', null);
-            store.set('text', null);
-            Navigator.pop(context, new PopResult(save: false, delete: true));
+            // * Shows the delete alert dialog.
+            _showDeleteWarningDialog(context);
           },
         ),
         // new SizedBox(width: 7.0),
