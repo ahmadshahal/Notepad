@@ -112,7 +112,7 @@ class EditPageAppBar extends StatelessWidget {
           return new SimpleDialog(
             title: new Text("Choose Color"),
             children: <Widget>[
-              simpleDialogItem(context, "Red", "0xFFFF8A80"),
+              simpleDialogItem(context, "Red", "0xFFFF9A90"),
               simpleDialogItem(context, "Green", "0xFFC8E6C9"),
               simpleDialogItem(context, "Blue", "0xFFB3E5FC"),
             ],

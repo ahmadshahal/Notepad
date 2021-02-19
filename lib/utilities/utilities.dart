@@ -15,14 +15,14 @@ class Utility {
   ];
 
   static final List colors = [
-    "0xFFFF8A80",
+    "0xFFFF9A90",
     "0xFFC8E6C9",
     "0xFFB3E5FC",
   ];
 
   // * Returns True if the String's first letter is an arabic charachter.
   static bool isArabic(String str) {
-    if (str == null) return false;
+    if (str == null || str == ' ') return false;
     if (str[0].codeUnits[0] <= 1610 && str[0].codeUnits[0] >= 1571) return true;
     return false;
   }

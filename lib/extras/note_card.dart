@@ -62,7 +62,7 @@ class NoteCard extends StatelessWidget {
         child: new Container(
           padding: EdgeInsets.all(17.0),
           child: new Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Expanded(
                 child: new Text(
@@ -71,7 +71,6 @@ class NoteCard extends StatelessWidget {
                   // * value ?? is equivalent to:
                   // * if value is null set it to this (after the ??)
                   // * else keep it as it is.
-                  // TODO: Implement Arabic Support because it is not working efficiently.
                   textDirection: Utility.isArabic(this.note.title)
                       ? TextDirection.rtl
                       : TextDirection.ltr,
