@@ -45,7 +45,7 @@ class _NotesListState extends State<NotesList> {
     });
   }
 
-  void addToList(String title, String text, [String color = "0xFFC8E6C9"]) {
+  void addToList(String title, String text, String color) {
     setState(() {
       this.notesList.add(
             new Note(
@@ -66,8 +66,9 @@ class _NotesListState extends State<NotesList> {
         this.notesList[this.notesList.indexOf(note)].title = title;
       if (text != null)
         this.notesList[this.notesList.indexOf(note)].noteText = text;
-      if(text != null || title != null)
-        this.notesList[this.notesList.indexOf(note)].date = Utility.dateTransformer(DateTime.now());
+      if (text != null || title != null)
+        this.notesList[this.notesList.indexOf(note)].date =
+            Utility.dateTransformer(DateTime.now());
       // * If either the title or the text changed, update the date to today's date.
     });
     widget.fileManager.writeListToJsonFile(this.notesList);
@@ -77,6 +78,15 @@ class _NotesListState extends State<NotesList> {
   void removeFromList(Note note) {
     setState(() {
       this.notesList.remove(note);
+    });
+    widget.fileManager.writeListToJsonFile(this.notesList);
+    // * Writes data to Json file after been changed.
+  }
+
+  // * Changes the Note color.
+  void editNoteColor(Note note, String color) {
+    setState(() {
+      this.notesList[this.notesList.indexOf(note)].color = color;
     });
     widget.fileManager.writeListToJsonFile(this.notesList);
     // * Writes data to Json file after been changed.
@@ -97,8 +107,7 @@ class _NotesListState extends State<NotesList> {
               new Container(
                 height: 200.0,
                 width: 200.0,
-                child: new Image.asset("assets/b_5cbbf7de65149.png"),
-                // TODO: Change the image.
+                child: new Image.asset("assets/cloud.png"),
               ),
               new SizedBox(
                 height: 10.0,
@@ -126,6 +135,7 @@ class _NotesListState extends State<NotesList> {
           note: notesList[index],
           removeFromList: removeFromList,
           editElementFromList: editElementFromList,
+          editNoteColor: editNoteColor,
         );
       },
       itemCount: this.notesList.length,

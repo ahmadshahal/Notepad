@@ -9,12 +9,11 @@ import 'package:Notepad/utilities/utilities.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  // !: Change After Learning State Managment - 
+  // !: Change After Learning State Managment -
   final GlobalNoteDataState store = GlobalNoteDataState.instance;
 
   @override
   Widget build(BuildContext context) {
-
     return new Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       // * PreferredSize widget is needed when creating custom AppBar.
@@ -34,12 +33,20 @@ class HomePage extends StatelessWidget {
                 builder: (BuildContext context) => new EditPage(),
               ),
             ).then((PopResult popResult) {
-              if (popResult.save && (popResult.text != null || popResult.title != null)) {
-                // * If the save button is pressed, create a new Note only if: it has a title or a body or both.  
+              if (popResult.save &&
+                  (popResult.text != null || popResult.title != null)) {
+                // * If the save button is pressed, create a new Note only if: it has a title or a body or both.
                 Function addFunction = store.get('addFunction');
                 // * Get the addFunction method reference from the global state.
-                addFunction(popResult.title, popResult.text, Utility.colors[new Random().nextInt(Utility.colors.length)]);
-                // * Choosing a random index number from the colors list.
+                addFunction(
+                  popResult.title,
+                  popResult.text,
+                  popResult.color ??
+                      Utility
+                          .colors[new Random().nextInt(Utility.colors.length)],
+                );
+                // * Choosing a random index number from the colors list if it hasn't been
+                // * chosen when creating the Note.
               }
             });
           },

@@ -10,8 +10,13 @@ class NoteCard extends StatelessWidget {
   // * References to methods that change state in a Upper Widgets.
   final Function removeFromList;
   final Function editElementFromList;
+  final Function editNoteColor;
 
-  NoteCard({this.note, this.removeFromList, this.editElementFromList});
+  NoteCard(
+      {this.note,
+      this.removeFromList,
+      this.editElementFromList,
+      this.editNoteColor});
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +36,7 @@ class NoteCard extends StatelessWidget {
               title: this.note.title,
               text: this.note.noteText,
               date: this.note.date,
+              color: this.note.color,
             ),
           ),
         ).then((PopResult popResult) {
@@ -40,6 +46,11 @@ class NoteCard extends StatelessWidget {
           } else if (popResult.save) {
             // If save button is pressed.
             editElementFromList(this.note, popResult.title, popResult.text);
+          }
+          // * Change the Note color if it has been changed.
+          // * Either the save has been pressed or it hasn't.
+          if (popResult.color != null) {
+            editNoteColor(note, popResult.color);
           }
         });
       },

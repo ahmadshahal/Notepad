@@ -2,7 +2,8 @@ class GlobalNoteDataState {
   final Map<String, dynamic> _data = <String, dynamic>{
     'title': null,
     'text': null,
-    'addFunction' : null
+    'addFunction' : null,
+    'color' : null
   };
 
   static GlobalNoteDataState instance = GlobalNoteDataState._();

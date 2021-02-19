@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class PopResult {
   bool save; // True if save button is pressed.
   bool delete; // True if delete button is pressed.

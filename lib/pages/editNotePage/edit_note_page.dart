@@ -8,11 +8,12 @@ class EditPage extends StatelessWidget {
   final String title;
   final String text;
   final String date;
+  final String color;
 
   // !: Change After Learning State Managment
   final GlobalNoteDataState store = GlobalNoteDataState.instance;
 
-  EditPage({this.title, this.text, this.date});
+  EditPage({this.title, this.text, this.date, this.color});
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +31,15 @@ class EditPage extends StatelessWidget {
         // * If they didn't change, they will be null.
         if (store.get('title') != null || store.get('text') != null)
           editPageAppBar.showBackWarningDialog(context);
-        else
-          Navigator.pop(context, new PopResult(save: false, delete: false));
+        else {
+          String color = store.get('color');
+          store.set('color', null); // Emptying the global state.
+          Navigator.pop(
+            context,
+            // * Popping the color even if save isn't pressed.
+            new PopResult(save: false, delete: false, color: color),
+          );
+        }
         return Future.value(false);
       },
       child: new Scaffold(

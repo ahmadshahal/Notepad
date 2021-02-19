@@ -21,9 +21,12 @@ class EditPageAppBar extends StatelessWidget {
                   // * because they are no longer needed.
                   store.set('title', null);
                   store.set('text', null);
+                  store.set('color', null);
                   Navigator.pop(context); // pops the dialog.
                   Navigator.pop(
-                      context, new PopResult(save: false, delete: true));
+                    context,
+                    new PopResult(save: false, delete: true, color: null),
+                  );
                   // pops the page.
                 },
               ),
@@ -53,9 +56,13 @@ class EditPageAppBar extends StatelessWidget {
                   // * because they are no longer needed.
                   store.set('title', null);
                   store.set('text', null);
+                  String color = store.get('color');
+                  store.set('color', null);
                   Navigator.pop(context); // pops the dialog.
                   Navigator.pop(
-                      context, new PopResult(save: false, delete: false));
+                    context,
+                    new PopResult(save: false, delete: false, color: color),
+                  );
                   // pops the page.
                 },
               ),
@@ -65,6 +72,49 @@ class EditPageAppBar extends StatelessWidget {
                   Navigator.pop(context); // pops the dialog.
                 },
               ),
+            ],
+          );
+        });
+  }
+
+  // * Creates a Dialog Item.
+  Widget simpleDialogItem(
+      BuildContext context, String colorName, String color) {
+    return new SimpleDialogOption(
+      onPressed: () {
+        store.set('color', color); // Saving the pressed color in the global state.
+        Navigator.pop(context);
+      },
+      child: new Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          new Icon(
+            Icons.colorize_sharp,
+            color: new Color(
+              int.parse(color),
+            ),
+          ),
+          new SizedBox(
+            width: 15.0,
+          ),
+          new Text(colorName),
+        ],
+      ),
+    );
+  }
+
+  // * Shows a Choose Color Alert Dialog.
+  void showChooseColorDialog(BuildContext context) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return new SimpleDialog(
+            title: new Text("Choose Color"),
+            children: <Widget>[
+              simpleDialogItem(context, "Red", "0xFFFF8A80"),
+              simpleDialogItem(context, "Green", "0xFFC8E6C9"),
+              simpleDialogItem(context, "Blue", "0xFFB3E5FC"),
             ],
           );
         });
@@ -83,12 +133,22 @@ class EditPageAppBar extends StatelessWidget {
         ),
         onPressed: () {
           // * If and only if the title or the text changed, show the dialog.
-          // * Else, just pop the page.
+          // * Else, just pop the page, but pop the color with it.
           // * If they didn't change, they will be null.
           if (store.get('title') != null || store.get('text') != null)
             showBackWarningDialog(context);
-          else
-            Navigator.pop(context, new PopResult(save: false, delete: false));
+          else {
+            String color = store.get('color');
+            store.set('color', null); // Emptying the state.
+            Navigator.pop(
+              context,
+              new PopResult(
+                save: false,
+                delete: false,
+                color: color,
+              ),
+            );
+          }
         },
       ),
       actions: [
@@ -114,7 +174,9 @@ class EditPageAppBar extends StatelessWidget {
             size: 23.0,
             color: Theme.of(context).accentColor,
           ),
-          onPressed: () {},
+          onPressed: () {
+            showChooseColorDialog(context);
+          },
         ),
         // new SizedBox(width: 7.0),
         new IconButton(
@@ -129,18 +191,20 @@ class EditPageAppBar extends StatelessWidget {
             // * Saving the values of the global state in variables then emptying them.
             String title = store.get('title');
             String text = store.get('text');
+            String color = store.get('color');
             store.set('title', null);
             store.set('text', null);
+            store.set('color', null);
             Navigator.pop(
-                context,
-                new PopResult(
-                  delete: false,
-                  save: true,
-                  text: text,
-                  title: title,
-                )
-                // TODO: Implement Color popping
-                );
+              context,
+              new PopResult(
+                delete: false,
+                save: true,
+                text: text,
+                title: title,
+                color: color,
+              ),
+            );
           },
         ),
         new SizedBox(width: 7.0),
