@@ -7,6 +7,7 @@ class HomePageAppBar extends StatelessWidget {
       backgroundColor: Theme.of(context).primaryColor,
       actions: [
         new IconButton(
+          tooltip: 'Search',
           splashRadius: 20.0,
           icon: new Icon(
             Icons.search,
@@ -18,6 +19,7 @@ class HomePageAppBar extends StatelessWidget {
           },
         ),
         new IconButton(
+          tooltip: 'More',
           splashRadius: 20.0,
           icon: new Icon(
             Icons.more_vert,
@@ -28,6 +30,25 @@ class HomePageAppBar extends StatelessWidget {
             // TODO: Implement.
           },
         ),
+        /*
+         * Couldn't find a way to change the button's splash.
+          new PopupMenuButton(
+            tooltip: 'More',
+            icon: new Icon(
+              Icons.more_vert,
+              size: 25.0,
+              color: Theme.of(context).accentColor,
+            ),
+            offset: new Offset(0, 400),
+            itemBuilder: (context) {
+              return this.popUpMenuStringElements.map((String text) {
+                return new PopupMenuItem(
+                  child: new Text(text),
+                );
+              }).toList();
+            },
+          ),
+        */
       ],
       title: new Container(
         margin: EdgeInsets.only(left: 5.0),
