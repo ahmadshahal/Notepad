@@ -26,4 +26,6 @@ class BaseWidget extends StatelessWidget {
       - Use the named routes technique.
       - Remove the global state and learn Provider.
       - Add RTL Support.
+      - Change Modifiing string technique.
+      - A bug appeared when the text goes out of scope in textFields.
 */

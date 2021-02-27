@@ -1,3 +1,5 @@
+import 'package:Notepad/extras/customNoteTextTextField.dart';
+import 'package:Notepad/extras/customTitleTextField.dart';
 import 'package:Notepad/extras/pop_result.dart';
 import 'package:Notepad/pages/editNotePage/edit_note_page_app_bar.dart';
 import 'package:Notepad/stateManagment/global_state.dart';
@@ -56,36 +58,7 @@ class EditPage extends StatelessWidget {
               SizedBox(
                 height: 16.0,
               ),
-              new TextField(
-                onChanged: (String text) {
-                  // * title will be saved in the global state each time it is changed
-                  // * so it can be used to change the data.
-                  store.set('title', text);
-                  // * If no changes happen, String text will be null.
-                },
-                showCursor: true,
-                controller: TextEditingController(text: this.title),
-                keyboardType: TextInputType.multiline,
-                maxLines: null,
-                cursorColor: Theme.of(context).accentColor,
-                textCapitalization: TextCapitalization.words,
-                style: new TextStyle(
-                    color: Theme.of(context).accentColor,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 26.0),
-                // TODO: Implement Arabic Support
-                textDirection: Utility.isArabic(this.title)
-                    ? TextDirection.rtl
-                    : TextDirection.ltr,
-                decoration: new InputDecoration(
-                  border: InputBorder.none,
-                  hintText: "Title",
-                  hintStyle: new TextStyle(
-                      color: Colors.white54,
-                      fontWeight: FontWeight.w600,
-                      fontSize: 26.0),
-                ),
-              ),
+              new CustomTitleTextField(title: this.title),
               new SizedBox(
                 height: 9.0,
               ),
@@ -101,36 +74,7 @@ class EditPage extends StatelessWidget {
               new SizedBox(
                 height: 1.5,
               ),
-              new TextField(
-                onChanged: (String text) {
-                  // * text will be saved in the global state each time it is changed
-                  // * so it can be used to change the data.
-                  store.set('text', text);
-                },
-                showCursor: true,
-                controller: TextEditingController(text: this.text),
-                keyboardType: TextInputType.multiline,
-                maxLines: null,
-                scrollPhysics: new BouncingScrollPhysics(),
-                cursorColor: Colors.white,
-                textCapitalization: TextCapitalization.sentences,
-                style: new TextStyle(
-                    color: Theme.of(context).accentColor,
-                    fontWeight: FontWeight.w300,
-                    fontSize: 16.0),
-                // TODO: Implement Arabic Support
-                textDirection: Utility.isArabic(this.text)
-                    ? TextDirection.rtl
-                    : TextDirection.ltr,
-                decoration: new InputDecoration(
-                  border: InputBorder.none,
-                  hintText: "Type Something ..",
-                  hintStyle: new TextStyle(
-                      color: Colors.white54,
-                      fontWeight: FontWeight.w300,
-                      fontSize: 16.0),
-                ),
-              ),
+              new CustomNoteTextTextField(text: this.text)
             ],
           ),
         ),
