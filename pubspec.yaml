@@ -60,6 +60,7 @@ flutter:
     - assets/Lovepik_com-401182476-crying-expression-pack.png
     - assets/cloud.png
     - assets/icon.png
+    - assets/dr_ford.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
