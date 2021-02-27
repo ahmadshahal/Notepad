@@ -27,7 +27,18 @@ class HomePageAppBar extends StatelessWidget {
             color: Theme.of(context).accentColor,
           ),
           onPressed: () {
-            // TODO: Implement.
+            showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return new SimpleDialog(
+                    titlePadding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 0.0),
+                    title: new Text(
+                      'Made with ❤ by Dr. Ford',
+                      textAlign: TextAlign.center,
+                      style: new TextStyle(fontSize: 17.0),
+                    ),
+                  );
+                });
           },
         ),
         /*

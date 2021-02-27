@@ -67,7 +67,9 @@ class NoteCard extends StatelessWidget {
               Expanded(
                 child: new Text(
                   // ! Consider changing this technique.
-                  Utility.modifyStringLength(this.note.title ?? ""),
+                  this.note.title == '' || this.note.title == null
+                      ? Utility.modifyStringLength(this.note.noteText ?? "")
+                      : Utility.modifyStringLength(this.note.title ?? ""),
                   // * value ?? is equivalent to:
                   // * if value is null set it to this (after the ??)
                   // * else keep it as it is.

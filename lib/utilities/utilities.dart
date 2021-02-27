@@ -29,10 +29,10 @@ class Utility {
 
   // * If the String is long, cut a part of it and exchange it with "..".
   static String modifyStringLength(String str) {
-    if (str != null && str.length >= 76) {
+    if (str != null && str.length >= 65) {
       int i;
-      for (i = 76; i > 0; i--) {
-        if (str[i] == ' ') break;
+      for (i = 65; i > 0; i--) {
+        if (str[i] == "\s" || str[i] == ' ') break;
       }
       String altString = str.substring(0, i);
       altString += '..';
