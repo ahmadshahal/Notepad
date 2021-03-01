@@ -1,4 +1,4 @@
-import 'package:Notepad/pages/aboutPage/about_page.dart';
+import 'package:Notepad/pages/about_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePageAppBar extends StatelessWidget {
