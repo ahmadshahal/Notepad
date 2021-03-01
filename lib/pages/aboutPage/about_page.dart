@@ -5,11 +5,28 @@ class AboutPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text('About Application'),
+        leading: new IconButton(
+            splashRadius: 20.0,
+            icon: new Icon(
+              Icons.arrow_back,
+              size: 23.0,
+              color: Theme.of(context).accentColor,
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            }),
+        title: new Text(
+          'About Application',
+          style: new TextStyle(
+            fontSize: 20.0,
+            fontWeight: FontWeight.w400,
+            color: Theme.of(context).accentColor,
+          ),
+        ),
       ),
       backgroundColor: Theme.of(context).primaryColor,
       body: Padding(
-        padding: const EdgeInsets.fromLTRB(35.0, 20.0, 35.0, 0.0),
+        padding: const EdgeInsets.fromLTRB(35.0, 25.0, 35.0, 0.0),
         child: Column(
           children: [
             Container(
@@ -24,43 +41,19 @@ class AboutPage extends StatelessWidget {
               height: 20.0,
             ),
             new Text(
-              'The simplest notes app on the market, fun and easy to use.\n\nFeatures:\n - Save, edit and delete notes.\n - Search for notes content.\n - Arabic and RTL lanuages support.\n\nDeveloper Contact: ahmad.alshahal2@gmail.com',
+              'The simplest notes app on the market,\nfun and easy to use.\n\n\nFeatures:\n - Save, edit and delete notes.\n - Search for notes content.\n - Arabic and RTL lanuages support.\n\n\nDeveloper Contact:\nahmad.alshahal2@gmail.com',
               textAlign: TextAlign.start,
-              style: new TextStyle(fontSize: 16.0),
+              style: new TextStyle(fontSize: 16.0, fontWeight: FontWeight.w400),
             ),
-            new SizedBox(height: 45.0),
+            new SizedBox(height: 50.0),
             new Text(
               'V 0.0.1',
               textAlign: TextAlign.center,
-              style: new TextStyle(fontSize: 16),
+              style: new TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
             ),
-            new SizedBox(height: 45.0),
-            new Text('Made with ❤ by Dr. Ford', textAlign: TextAlign.center,
-              style: new TextStyle(fontSize: 16.0)),
           ],
         ),
       ),
     );
   }
 }
-/*
-new Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              new Image.asset(
-                'assets/dr_ford.png',
-                height: 280,
-                width: 280,
-                alignment: Alignment.center,
-              ),
-              SizedBox(
-                height: 5.0,
-              ),
-              new Text(
-                'Made With ❤ By Dr. Ford',
-                textAlign: TextAlign.center,
-                style: new TextStyle(fontSize: 16.0),
-              )
-            ],
-          ),
-*/
