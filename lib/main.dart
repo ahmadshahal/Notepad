@@ -1,4 +1,5 @@
 import 'package:Notepad/pages/homePage/home_page.dart';
+import 'package:Notepad/pages/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,7 +11,7 @@ class BaseWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
       title: "Notepad",
-      home: new HomePage(),
+      home: new SplashScreen(),
       theme: new ThemeData(
         brightness: Brightness.dark,
         primaryColor: Colors.grey[900],
@@ -23,9 +24,8 @@ class BaseWidget extends StatelessWidget {
 }
 /*
  TODO: 
-      - Use the named routes technique.
-      - Remove the global state and learn Provider.
-      - Add RTL Support.
-      - Change Modifiing string technique.
-      - A bug appeared when the text goes out of scope in textFields.
+    - Use the named routes technique.
+    - Remove the global state and learn Provider.
+    - Change Modifiing string technique.
+    - A bug appeared when the text goes out of scope in textFields (When the state is gone).
 */
