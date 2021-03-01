@@ -1,4 +1,3 @@
-import 'package:Notepad/pages/homePage/home_page.dart';
 import 'package:Notepad/pages/splash_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -24,8 +23,10 @@ class BaseWidget extends StatelessWidget {
 }
 /*
  TODO: 
+    - Add Initial Notes.
     - Use the named routes technique.
+    - More Button splash.
     - Remove the global state and learn Provider.
     - Change Modifiing string technique.
-    - A bug appeared when the text goes out of scope in textFields (When the state is gone).
+    - Custom Text Fields Bugs.
 */

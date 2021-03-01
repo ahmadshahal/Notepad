@@ -47,7 +47,7 @@ class AboutPage extends StatelessWidget {
             ),
             new SizedBox(height: 50.0),
             new Text(
-              'V 0.0.1',
+              'V 0.0.1 Beta',
               textAlign: TextAlign.center,
               style: new TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
             ),
